@@ -3,6 +3,8 @@
 
 Set of tools of operating server shared with multiple projects using Docker.
 
+[TOC]
+
 ### Requirements
 
 ```shell script
@@ -20,6 +22,14 @@ docker pull traefik:latest
 docker pull nginx:stable-alpine
 docker pull postgres:alpine
 ```
+
+## Features
+
+#### GitLab CI runner
+
+`./gitlab-ci-runner/`
+
+Scripts for setting up your own GitLab CI runner.
 
 ## Commands
 
