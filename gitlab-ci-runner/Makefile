@@ -13,6 +13,10 @@ enter:
 	docker exec -it gitlab-runner bash
 
 register:
+	-e register.sh || echo "Copy example.register.sh to register.sh and change token (and url) value."
+	bash register.sh
+
+iregister:
 	# https://docs.gitlab.com/runner/install/docker.html#option-2-use-docker-volumes-to-start-the-runner-container
 	docker run --rm -it -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest register
 

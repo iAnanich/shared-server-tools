@@ -15,12 +15,25 @@ https://docs.gitlab.com/runner/install/docker.html#option-2-use-docker-volumes-t
 make create
 ```
 
-### 2. Register runner
+### 2.a Register runner 
+
+https://docs.gitlab.com/runner/register/index.html#one-line-registration-command
+
+Copy `example.register.sh` to `register.sh` and replace `RUNNER_REGISTRATION_TOKEN` (and `url`, if not using gitlab.com).
+Token can be retrieved from your repository/group settings: go to Settings > CI > Runners section.
+
+```shell script
+make register
+```
+
+### 2.b Register runner interactively
+
+**NOTE**: doesn't work with docker socket yet.
 
 https://docs.gitlab.com/runner/install/docker.html#option-2-use-docker-volumes-to-start-the-runner-container
 
 ```shell script
-make register
+make iregister
 ```
 
 Get URL and token from Visit your GitLab repository page, enter `Settings` -> `CI / CD` -> `Runners`.

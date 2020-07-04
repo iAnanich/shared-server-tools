@@ -541,3 +541,4 @@ $RECYCLE.BIN/
 # User defined
 # ------------
 .idea/
+gitlab-ci-runner/register.sh
