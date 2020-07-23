@@ -31,6 +31,12 @@ docker pull postgres:alpine
 
 Scripts for setting up your own GitLab CI runner.
 
+#### Traefik public
+
+`./traefik-public/`
+
+Cluster-wide load balancer.
+
 ## Commands
 
 See `Makefile` for list of shortcuts and what they do.
