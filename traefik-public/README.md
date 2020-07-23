@@ -22,7 +22,7 @@ make first-time
 
 #### Configure
 
-For first-time configuration or reconfiguration, type `make configure`.
+For first-time configuration or reconfiguration, type `make .env`.
 
 **Note**: this will create ignored `docker-swarm.yml`. 
 If calling `make deploy` or `make first-time` without the file, 

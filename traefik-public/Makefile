@@ -1,9 +1,9 @@
 
-cfg:
+.env:
 	sh configure.sh
 
-docker-swarm.yml:
-	make cfg
+docker-swarm.yml: .env
+	sh template.sh
 
 first-time:
 	echo "setting up like for teh first time..."
@@ -14,7 +14,7 @@ first-time:
 
 clean-after:
 	make rm
-	make clear-acme
+	docker volume rm traefik-front_traefik-public-certificates
 	make remove-network
 	echo "everything cleaned."
 
