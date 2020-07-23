@@ -1,4 +1,23 @@
 
+cfg:
+	sh configure.sh
+
+docker-swarm.yml:
+	make cfg
+
+first-time:
+	echo "setting up like for teh first time..."
+	make create-network
+	make tag-the-node
+	make deploy
+	make ps
+
+clean-after:
+	make rm
+	make clear-acme
+	make remove-network
+	echo "everything cleaned."
+
 # utils
 # -----
 
@@ -22,8 +41,8 @@ remove-network:
 # Stack
 # -----
 
-deploy:
-	docker stack deploy -c docker-compose.yml traefik-front
+deploy: docker-swarm.yml
+	docker stack deploy -c docker-swarm.yml traefik-front
 
 rm:
 	docker stack rm traefik-front
