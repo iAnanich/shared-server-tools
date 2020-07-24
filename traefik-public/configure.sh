@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Script prompts for Traefik public stack settings.
 
