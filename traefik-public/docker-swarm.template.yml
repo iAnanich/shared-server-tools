@@ -78,6 +78,10 @@ services:
       - --certificatesresolvers.le.acme.storage=/certificates/acme.json
       # Use the TLS Challenge for Let's Encrypt
       - --certificatesresolvers.le.acme.tlschallenge=true
+      # Use staging Let's encrypt environment
+      - --certificatesresolvers.le.acme.caServer=${ACME_CASERVER}
+      # Set key type
+      - --certificatesresolvers.le.acme.KeyType=${ACME_KEYTYPE}
       # Enable the access log, with HTTP requests
       - --accesslog
       # Enable the Traefik log, for configurations and errors
