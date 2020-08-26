@@ -50,6 +50,9 @@ rm:
 ps:
 	docker stack ps traefik-front
 
+ls:
+	docker service ls | grep "traefik-front"
+
 # Logs
 # ----
 
