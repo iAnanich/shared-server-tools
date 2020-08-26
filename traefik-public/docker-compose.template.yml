@@ -31,7 +31,7 @@ services:
         - traefik.constraint-label=traefik-public
         # admin-auth middleware with HTTP Basic auth
         # Using the environment variables TRAEFIK_USER and TRAEFIK_PASSHASH
-        - traefik.http.middlewares.admin-auth.basicauth.users=${TRAEFIK_USER}:${TRAEFIK_PASSHASH}
+        - "traefik.http.middlewares.admin-auth.basicauth.users=${TRAEFIK_USER}:${TRAEFIK_PASSHASH}"
         # https-redirect middleware to redirect HTTP to HTTPS
         # It can be re-used by other stacks in other Docker Compose files
         - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https

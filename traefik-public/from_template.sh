@@ -1,3 +1,3 @@
 #!/bin/bash
 
-envsubst '$TRAEFIK_CERTIFICATES_VOLUME_NAME,$TRAEFIK_NETWORK_NAME' < docker-compose.template.yml > docker-compose.yml
+envsubst '$TRAEFIK_NETWORK_NAME' > docker-compose.yml < docker-compose.template.yml

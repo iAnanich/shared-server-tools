@@ -30,7 +30,7 @@ case $input in
   read -p "Traefik dashboard domain (something like traefik.example.com): " traefik_domain
 
   read -p "Traefik admin username: " traefik_user
-  traefik_password_hash=$(openssl passwd -apr1)
+  traefik_password_hash=$(openssl passwd -apr1 | sed -e s/\\$/\\$\\$/g)
 
   read -r -p "Continue? [Y/n] " input
   case $input in

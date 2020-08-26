@@ -20,12 +20,6 @@ clean-after:
 	make remove-network
 	echo "everything cleaned."
 
-# utils
-# -----
-
-hash:
-	openssl passwd -apr1
-
 
 # -----------------------------
 #  ~ Docker Swarm operations ~
