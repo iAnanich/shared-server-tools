@@ -42,7 +42,6 @@ case $input in
     echo "ACME_KEYTYPE=$acme_keytype" >> .env
     echo "ACME_CASERVER=$acme_caserver" >> .env
     echo "ACME_EMAIL=$acme_email" >> .env
-    echo "" > .env
     echo "TRAEFIK_STACK_NAME=$traefik_stack_name" >> .env
     echo "TRAEFIK_NETWORK_NAME=$traefik_network_name}" >> .env
     echo "TRAEFIK_CERTIFICATES_VOLUME_NAME=$traefik_certificates_volume_name}" >> .env
