@@ -86,6 +86,7 @@ services:
       - --accesslog
       # Enable the Traefik log, for configurations and errors
       - --log
+      - --log.level=${TRAEFIK_LOGLEVEL-INFO}
       # Enable the Dashboard and API
       - --api
     networks:
