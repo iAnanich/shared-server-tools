@@ -24,9 +24,6 @@ case $input in
   read -p "Traefik network name: [${traefik_stack_name}] " traefik_network_name
   traefik_network_name=${traefik_network_name:-"${traefik_stack_name}"}
 
-  read -p "Traefik certificates volume name: [${traefik_stack_name}_certificates] " traefik_certificates_volume_name
-  traefik_certificates_volume_name=${traefik_certificates_volume_name:-"${traefik_stack_name}_certificates"}
-
   read -p "Traefik logging level: [INFO] " traefik_loglevel
   traefik_loglevel=${traefik_loglevel:-"INFO"}
 
@@ -44,7 +41,6 @@ case $input in
     echo "ACME_EMAIL=$acme_email" >> .env
     echo "TRAEFIK_STACK_NAME=$traefik_stack_name" >> .env
     echo "TRAEFIK_NETWORK_NAME=$traefik_network_name}" >> .env
-    echo "TRAEFIK_CERTIFICATES_VOLUME_NAME=$traefik_certificates_volume_name}" >> .env
     echo "TRAEFIK_LOGLEVEL=$traefik_loglevel" >> .env
     echo "TRAEFIK_DOMAIN=$traefik_domain" >> .env
     echo "TRAEFIK_USER=$traefik_user" >> .env

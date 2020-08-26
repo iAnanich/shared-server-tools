@@ -54,11 +54,6 @@ services:
         - traefik.http.routers.traefik-public-https.middlewares=admin-auth
         # Define the port inside of the Docker service to use
         - traefik.http.services.traefik-public.loadbalancer.server.port=8080
-    volumes:
-      # Add Docker as a mounted volume, so that Traefik can read the labels of other services
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      # Mount the volume to store the certificates
-      - traefik-public-certificates:/certificates
     command:
       # Enable Docker in Traefik, so that it reads labels from Docker services
       - --providers.docker
@@ -92,16 +87,22 @@ services:
     networks:
       # Use the public network created to be shared between Traefik and
       # any other service that needs to be publicly available with HTTPS
-      - traefik-public
+      - $TRAEFIK_NETWORK_NAME
+    volumes:
+      # Add Docker as a mounted volume, so that Traefik can read the labels of other services
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Mount the volume to store the certificates
+      - certificates:/certificates
 
 volumes:
-  # Create a volume to store the certificates, there is a constraint to make sure
-  # Traefik is always deployed to the same Docker node with the same volume containing
-  # the HTTPS certificates
-  traefik-public-certificates:
+  # Create a volume to store the certificates, there is a constraint to make
+  # sure Traefik is always deployed to the same Docker node with the same
+  # volume containing the HTTPS certificates
+  certificates:
 
 networks:
-  # Use the previously created public network "traefik-public", shared with other
-  # services that need to be publicly available via this Traefik
-  traefik-public:
+  # Use the previously created public network $TRAEFIK_NETWORK_NAME, shared
+  # with other services that need to be publicly available via this Traefik
+  # (parametrized when creating docker-compose.yml from this template)
+  $TRAEFIK_NETWORK_NAME:
     external: true

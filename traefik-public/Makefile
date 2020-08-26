@@ -5,7 +5,7 @@ export
 	sh configure.sh
 
 docker-compose.yml: .env
-	docker-compose -f docker-compose.template.yml config > docker-compose.yml
+	sh from_template.sh
 
 first-time:
 	echo "setting up like for teh first time..."
