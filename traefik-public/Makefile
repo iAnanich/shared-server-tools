@@ -1,9 +1,11 @@
+include .env
+export
 
 .env:
 	sh configure.sh
 
 docker-compose.yml: .env
-	sh template.sh
+	docker-compose -f docker-compose.template.yml config > docker-compose.yml
 
 first-time:
 	echo "setting up like for teh first time..."
@@ -14,7 +16,7 @@ first-time:
 
 clean-after:
 	make rm
-	docker volume rm traefik-front_traefik-public-certificates
+	make remove-certificates-volume
 	make remove-network
 	echo "everything cleaned."
 
@@ -33,34 +35,40 @@ hash:
 # -------
 
 create-network:
-	docker network create --driver=overlay traefik-public
+	docker network create --driver=overlay ${TRAEFIK_NETWORK_NAME}
 
 remove-network:
-	docker network rm traefik-public
+	docker network rm ${TRAEFIK_NETWORK_NAME}
+
+# Volume
+# ------
+
+remove-certificates-volume:
+	docker volume rm ${TRAEFIK_CERTIFICATES_VOLUME_NAME}
 
 # Stack
 # -----
 
 deploy: docker-compose.yml
-	docker stack deploy -c docker-compose.yml traefik-front
+	docker stack deploy -c docker-compose.yml ${TRAEFIK_STACK_NAME}
 
 rm:
-	docker stack rm traefik-front
+	docker stack rm ${TRAEFIK_STACK_NAME}
 
 ps:
-	docker stack ps traefik-front
+	docker stack ps ${TRAEFIK_STACK_NAME}
 
 ls:
-	docker service ls | grep "traefik-front"
+	docker service ls | grep "${TRAEFIK_STACK_NAME}"
 
 # Logs
 # ----
 
 log:
-	docker service logs traefik-front_traefik
+	docker service logs ${TRAEFIK_STACK_NAME}_traefik
 
 flog:
-	docker service logs --follow traefik-front_traefik
+	docker service logs --follow ${TRAEFIK_STACK_NAME}_traefik
 
 # utils
 # -----
@@ -70,5 +78,5 @@ tag-the-node:
 
 clear-acme:
 	make rm
-	docker volume rm traefik-front_traefik-public-certificates
+	make remove-certificates-volume
 	make deploy
