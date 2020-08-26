@@ -545,5 +545,5 @@ $RECYCLE.BIN/
 
 gitlab-ci-runner/register.sh
 
-traefik-public/docker-swarm.yml
+traefik-public/docker-compose.yml
 traefik-public/.env

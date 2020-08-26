@@ -2,7 +2,7 @@
 .env:
 	sh configure.sh
 
-docker-swarm.yml: .env
+docker-compose.yml: .env
 	sh template.sh
 
 first-time:
@@ -41,8 +41,8 @@ remove-network:
 # Stack
 # -----
 
-deploy: docker-swarm.yml
-	docker stack deploy -c docker-swarm.yml traefik-front
+deploy: docker-compose.yml
+	docker stack deploy -c docker-compose.yml traefik-front
 
 rm:
 	docker stack rm traefik-front
