@@ -26,8 +26,8 @@ This command will execute configuration script and deploy for the first time.
 Configuration happens in to steps:
 1. `.env` - can be created by hand from `example.env` file (copy and edit) or 
 by `make .env` which will prompt for every value.
-2. `docker-swarm.yml` - created by `make docker-swarm.yml` which applies settings
-from `.env` to `docker-swarm.template.yml`. Further modifications can be applied too.
+2. `docker-compose.yml` - created by `make docker-compose.yml` which applies settings
+from `.env` to `docker-compose.template.yml`. Further modifications can be applied too.
 
 For reconfiguration, type `make .env`, and then `make deploy` to apply changes.
 
@@ -36,7 +36,7 @@ For reconfiguration, type `make .env`, and then `make deploy` to apply changes.
 ```shell script
 make deploy
 ```
-Applies changes from `docker-swarm.yml`.
+Applies changes from `docker-compose.yml`.
 
 #### Further management
 See Makefile for full list of shortcuts.
