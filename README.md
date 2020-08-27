@@ -13,7 +13,7 @@ apt install make docker.io docker-compose openssl
 
 Although, useful packages:
 ```shell script
-apt install git curl apache2-utils htop
+apt install git curl apache2-utils htop gettext-base
 ```
 
 Pull common docker images:
@@ -35,7 +35,14 @@ Scripts for setting up your own GitLab CI runner.
 
 `./traefik-public/`
 
-Cluster-wide load balancer.
+Cluster-wide load balancer and https proxy.
+
+#### Portainer
+
+`./portainer/`
+
+Portainer is a web UI (user interface) that allows you to see the state of 
+your Docker services in a Docker Swarm mode cluster and manage it.
 
 ## Commands
 
