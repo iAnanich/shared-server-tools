@@ -44,6 +44,12 @@ Cluster-wide load balancer and https proxy.
 Portainer is a web UI (user interface) that allows you to see the state of 
 your Docker services in a Docker Swarm mode cluster and manage it.
 
+#### Swarmpit
+
+`./swarmpit/`
+
+Swarmpit provides a nice and clean way to manage your Docker Swarm cluster.
+
 ## Commands
 
 See `Makefile` for list of shortcuts and what they do.

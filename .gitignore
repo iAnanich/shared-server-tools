@@ -549,3 +549,5 @@ traefik-public/docker-compose.yml
 traefik-public/.env
 
 portainer/.env
+
+swarmpit/.env
