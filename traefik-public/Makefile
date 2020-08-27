@@ -38,7 +38,7 @@ remove-network:
 # ------
 
 remove-certificates-volume:
-	docker volume rm ${TRAEFIK_CERTIFICATES_VOLUME_NAME}
+	docker volume rm ${TRAEFIK_STACK_NAME}_certificates
 
 # Stack
 # -----
