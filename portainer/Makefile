@@ -3,7 +3,7 @@ export
 
 first-time:
 	echo "setting up like for teh first time..."
-	make tag-the-node
+	make label-node
 	make deploy
 	make ls
 
