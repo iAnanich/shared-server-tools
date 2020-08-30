@@ -1,0 +1,37 @@
+# This setup is meant to be used with Docker Swarm mode.
+# Stack requires JUPYTER_NOTEBOOK_DOMAIN env var to be set before being valid.
+
+version: "3.3"
+
+services:
+  notebook:
+    image: jupyter/base-notebook
+    networks:
+      - traefik-public
+    volumes:
+      # Path to default working directory
+      - notebook-home:/home/jovyan/
+    deploy:
+      placement:
+        constraints:
+          - node.labels.jupyter.notebook-data == true
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.jupyter-http.rule=Host(`${JUPYTER_NOTEBOOK_DOMAIN?Variable not set}`)
+        - traefik.http.routers.jupyter-http.entrypoints=http
+        - traefik.http.routers.jupyter-http.middlewares=https-redirect
+        - traefik.http.routers.jupyter-https.rule=Host(`${JUPYTER_NOTEBOOK_DOMAIN?Variable not set}`)
+        - traefik.http.routers.jupyter-https.entrypoints=https
+        - traefik.http.routers.jupyter-https.tls=true
+        - traefik.http.routers.jupyter-https.tls.certresolver=le
+        - traefik.http.services.jupyter.loadbalancer.server.port=8888
+
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  notebook-home:

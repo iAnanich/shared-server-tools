@@ -551,3 +551,5 @@ traefik-public/.env
 portainer/.env
 
 swarmpit/.env
+
+jupyter/.env
