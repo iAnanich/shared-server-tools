@@ -553,3 +553,5 @@ portainer/.env
 swarmpit/.env
 
 jupyter/.env
+
+postgres-public/.env

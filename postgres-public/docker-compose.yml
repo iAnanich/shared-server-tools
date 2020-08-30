@@ -1,0 +1,28 @@
+
+version: '3.3'
+
+services:
+  postgres:
+    image: library/postgres:12-alpine
+    volumes:
+      - data:/var/lib/postgresql/data/pgdata/
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata/
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+    networks:
+      - postgres-public
+    ports:
+      - 5432:5432
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.postgres.postgres-data == true
+
+volumes:
+  data:
+
+networks:
+  postgres-public:
+    external: true
