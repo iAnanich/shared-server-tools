@@ -1,0 +1,39 @@
+
+version: '3.3'
+
+services:
+  postgres:
+    image: library/postgres:12-alpine
+    volumes:
+      - data:/var/lib/postgresql/data/pgdata/
+    secrets:
+      - source: ${POSTGRES_STACK_NAME}.postgres.user
+        target: postgres.user
+      - source: ${POSTGRES_STACK_NAME}.postgres.password
+        target: postgres.password
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata/
+      - POSTGRES_USER_FILE=/run/secrets/postgres.user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres.password
+    networks:
+      - $POSTGRES_NETWORK_NAME
+    ports:
+      - 5432:5432
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.postgres.postgres-data == true
+
+volumes:
+  data:
+
+secrets:
+  $POSTGRES_STACK_NAME.postgres.user:
+    external: true
+  $POSTGRES_STACK_NAME.postgres.password:
+    external: true
+
+networks:
+  $POSTGRES_NETWORK_NAME:
+    external: true

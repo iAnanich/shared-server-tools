@@ -555,3 +555,4 @@ swarmpit/.env
 jupyter/.env
 
 postgres-public/.env
+postgres-public/docker-compose.yml

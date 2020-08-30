@@ -1,6 +1,9 @@
 include .env
 export
 
+docker-compose.yml:
+	sh from_template.sh
+
 it:
 	echo "setting up like for the first time..."
 	make label-this-node
