@@ -18,8 +18,11 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres.password
     networks:
       - $POSTGRES_NETWORK_NAME
-    ports:
-      - 5432:5432
+    # Uncomment "ports" section when creating stack in Portainer to open ports to internet
+    #ports:
+    #  - target: 5432
+    #    published: 5432
+    #    mode: host
     deploy:
       replicas: 1
       placement:
