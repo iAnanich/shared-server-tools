@@ -1,13 +1,18 @@
 include .env
 export
 
+.env:
+	cp example.env .env
+	nano .env
+
 docker-compose.yml:
 	sh from-template.sh
 
-it:
+it: .env
 	echo "setting up like for the first time..."
 	make label-this-node
 	make create-net
+	echo "Deploying..."
 	make deploy
 	make ps
 
