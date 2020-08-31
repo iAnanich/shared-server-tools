@@ -50,6 +50,12 @@ your Docker services in a Docker Swarm mode cluster and manage it.
 
 Swarmpit provides a nice and clean way to manage your Docker Swarm cluster.
 
+#### Postgres public
+
+`./postgres-public/`
+
+Postgres database designed to be shared across Docker Swarm.
+
 ## Commands
 
 See `Makefile` for list of shortcuts and what they do.
