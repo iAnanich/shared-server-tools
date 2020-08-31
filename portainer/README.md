@@ -10,7 +10,7 @@ More about Portainer CE [here](https://www.portainer.io/portainer-ce/)
 #### First time launching
 
 ```shell script
-make first-time
+make it
 ```
 This command will prepare the node and deploy for the first time.
 

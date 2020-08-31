@@ -1,11 +1,16 @@
 include .env
 export
 
-first-time:
+.env:
+	cp example.env .env
+	nano .env
+
+it: .env
 	echo "setting up like for teh first time..."
 	make label-node
+	echo "Deploying..."
 	make deploy
-	make ls
+	make ps
 
 
 # -----------------------------
@@ -21,11 +26,14 @@ deploy: docker-compose.yml
 rm:
 	docker stack rm ${PORTAINER_STACK_NAME}
 
+# Status
+# ------
+
 ps:
 	docker stack ps ${PORTAINER_STACK_NAME}
 
 ls:
-	docker service ls | grep "${PORTAINER_STACK_NAME}"
+	docker stack services ${PORTAINER_STACK_NAME}
 
 # Logs
 # ----

@@ -10,7 +10,7 @@ More about Swarmpit [here](https://swarmpit.io/)
 #### First time launching
 
 ```shell script
-make first-time
+make it
 ```
 This command will prepare the node and deploy for the first time.
 

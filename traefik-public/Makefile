@@ -5,12 +5,13 @@ export
 	sh configure.sh
 
 docker-compose.yml: .env
-	sh from_template.sh
+	sh from-template.sh
 
-first-time:
+it: .env
 	echo "setting up like for teh first time..."
 	make create-network
-	make tag-the-node
+	make label-this-node
+	echo "Deploying..."
 	make deploy
 	make ps
 
@@ -49,11 +50,14 @@ deploy: docker-compose.yml
 rm:
 	docker stack rm ${TRAEFIK_STACK_NAME}
 
+# Status
+# ------
+
 ps:
 	docker stack ps ${TRAEFIK_STACK_NAME}
 
 ls:
-	docker service ls | grep "${TRAEFIK_STACK_NAME}"
+	docker stack services ${TRAEFIK_STACK_NAME}
 
 # Logs
 # ----
@@ -67,8 +71,8 @@ flog:
 # utils
 # -----
 
-tag-the-node:
-	sh tag-the-node.sh
+label-this-node:
+	sh label-this-node.sh
 
 clear-acme:
 	make rm

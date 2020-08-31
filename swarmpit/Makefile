@@ -1,9 +1,14 @@
 include .env
 export
 
-first-time:
+.env:
+	cp example.env .env
+	nano .env
+
+it: .env
 	echo "setting up like for teh first time..."
-	make label-node
+	make label-this-node
+	echo "Deploying..."
 	make deploy
 	make ls
 
@@ -21,11 +26,14 @@ deploy: docker-compose.yml
 rm:
 	docker stack rm ${SWARMPIT_STACK_NAME}
 
+# Status
+# ------
+
 ps:
 	docker stack ps ${SWARMPIT_STACK_NAME}
 
 ls:
-	docker service ls | grep "${SWARMPIT_STACK_NAME}"
+	docker stack services ${SWARMPIT_STACK_NAME}
 
 # Logs
 # ----
@@ -39,5 +47,5 @@ flog:
 # utils
 # -----
 
-label-node:
-	sh label-node.sh
+label-this-node:
+	sh label-this-node.sh

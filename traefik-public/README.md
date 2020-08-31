@@ -15,7 +15,7 @@ Inspired by https://dockerswarm.rocks/traefik/
 #### First time launching
 
 ```shell script
-make first-time
+make it
 ```
 This command will execute configuration script and deploy for the first time.
 
