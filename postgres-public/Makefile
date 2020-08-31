@@ -2,7 +2,7 @@ include .env
 export
 
 docker-compose.yml:
-	sh from_template.sh
+	sh from-template.sh
 
 it:
 	echo "setting up like for the first time..."
