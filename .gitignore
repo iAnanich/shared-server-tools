@@ -543,7 +543,8 @@ $RECYCLE.BIN/
 
 .idea/
 
-gitlab-ci-runner/register.sh
+gitlab-ci-runner/.env
+gitlab-ci-runner/docker-compose.yml
 
 traefik-public/docker-compose.yml
 traefik-public/.env
