@@ -40,7 +40,7 @@ case $input in
     echo "ACME_CASERVER=$acme_caserver" >> .env
     echo "ACME_EMAIL=$acme_email" >> .env
     echo "TRAEFIK_STACK_NAME=$traefik_stack_name" >> .env
-    echo "TRAEFIK_NETWORK_NAME=$traefik_network_name}" >> .env
+    echo "TRAEFIK_NETWORK_NAME=$traefik_network_name" >> .env
     echo "TRAEFIK_LOGLEVEL=$traefik_loglevel" >> .env
     echo "TRAEFIK_DOMAIN=$traefik_domain" >> .env
     echo "TRAEFIK_USER=$traefik_user" >> .env
