@@ -9,16 +9,17 @@ docker-compose.dump.yml: .env
 
 it: .env
 	echo "setting up like for teh first time..."
-	make create-network
-	make label-this-node
+	make mk-net
+	make put-labels
 	echo "Deploying..."
 	make deploy
 	make ps
 
 clean-after:
-	make rm
-	make remove-certificates-volume
-	make remove-network
+	make rm-stack
+	make rm-certs-volume
+	make rm-net
+	make clear-labels
 	echo "everything cleaned."
 
 
@@ -29,17 +30,17 @@ clean-after:
 # Network
 # -------
 
-create-network:
+mk-net:
 	docker network create --driver=overlay ${TRAEFIK_NETWORK}
 
-remove-network:
+rm-net:
 	docker network rm ${TRAEFIK_NETWORK}
 
 # Volume
 # ------
 
-remove-certificates-volume:
-	docker volume rm ${TRAEFIK_STACK}_certificates
+rm-certs-volume:
+	docker volume rm ${TRAEFIK_STACK}_certs
 
 # Stack
 # -----
@@ -51,7 +52,7 @@ update:
 	make cleancfg
 	make deploy
 
-rm:
+rm-stack:
 	docker stack rm ${TRAEFIK_STACK}
 
 # Status
@@ -84,16 +85,16 @@ clear-labels:
 # Configuration
 # -------------
 
-dumpcfg:
+dump-cfg:
 	make docker-compose.dump.yml
 
-cleancfg:
+clean-cfg:
 	rm -f docker-compose.dump.yml
 
 # utils
 # -----
 
 clear-acme:
-	make rm
-	make remove-certificates-volume
+	make rm-stack
+	make rm-certs-volume
 	make deploy

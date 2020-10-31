@@ -26,7 +26,7 @@ This command will execute configuration script and deploy for the first time.
 Configuration happens in to steps:
 1. `.env` - can be created by hand from `example.env` file (copy and edit) or 
 by `make .env` which will prompt for every value.
-2. `docker-compose.dump.yml` - created by `make dumpcfg` which applies settings
+2. `docker-compose.dump.yml` - created by `make dump-cfg` which applies settings
 from `.env` to `docker-compose.yml`. Further modifications can be applied too.
 
 For reconfiguration, type `make .env`, and then `make deploy` to apply changes.
