@@ -18,8 +18,8 @@ case $input in
 
   read -p "E-mail address for ACME challenge: " acme_email
 
-  read -p "Traefik stack name: [traefik-public] " traefik_stack
-  traefik_stack=${traefik_stack:-"traefik-public"}
+  read -p "Traefik stack name: [traefik-upfront] " traefik_stack
+  traefik_stack=${traefik_stack:-"traefik-upfront"}
 
   read -p "Traefik network name: [${traefik_stack}] " traefik_network
   traefik_network=${traefik_network:-"${traefik_stack}"}
