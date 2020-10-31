@@ -18,11 +18,17 @@ case $input in
 
   read -p "E-mail address for ACME challenge: " acme_email
 
-  read -p "Traefik stack name: [traefik-public] " traefik_stack_name
-  traefik_stack_name=${traefik_stack_name:-"traefik-public"}
+  read -p "Traefik stack name: [traefik-public] " traefik_stack
+  traefik_stack=${traefik_stack:-"traefik-public"}
 
-  read -p "Traefik network name: [${traefik_stack_name}] " traefik_network_name
-  traefik_network_name=${traefik_network_name:-"${traefik_stack_name}"}
+  read -p "Traefik network name: [${traefik_stack}] " traefik_network
+  traefik_network=${traefik_network:-"${traefik_stack}"}
+
+  read -p "Traefik service label (used for enabling Traefik): [${traefik_stack}] " traefik_label
+  traefik_label=${traefik_label:-"${traefik_stack}"}
+
+  read -p "Traefik node label for certs volume: [traefik-upfront.certs-volume] " traefik_node_label_certs
+  traefik_node_label_certs=${traefik_node_label_certs:-"traefik-upfront.certs-volume"}
 
   read -p "Traefik logging level: [INFO] " traefik_loglevel
   traefik_loglevel=${traefik_loglevel:-"INFO"}
@@ -39,8 +45,10 @@ case $input in
     echo "ACME_KEYTYPE=$acme_keytype" >> .env
     echo "ACME_CASERVER=$acme_caserver" >> .env
     echo "ACME_EMAIL=$acme_email" >> .env
-    echo "TRAEFIK_STACK_NAME=$traefik_stack_name" >> .env
-    echo "TRAEFIK_NETWORK_NAME=$traefik_network_name" >> .env
+    echo "TRAEFIK_STACK=$traefik_stack" >> .env
+    echo "TRAEFIK_NETWORK=$traefik_network" >> .env
+    echo "TRAEFIK_LABEL=$traefik_label" >> .env
+    echo "TRAEFIK_NODE_LABEL_CERTS=traefik_node_label_certs" >> .env
     echo "TRAEFIK_LOGLEVEL=$traefik_loglevel" >> .env
     echo "TRAEFIK_DOMAIN=$traefik_domain" >> .env
     echo "TRAEFIK_USER=$traefik_user" >> .env

@@ -546,7 +546,7 @@ $RECYCLE.BIN/
 gitlab-ci-runner/.env
 gitlab-ci-runner/docker-compose.yml
 
-traefik-public/docker-compose.yml
+traefik-public/docker-compose.dump.yml
 traefik-public/.env
 
 portainer/.env
