@@ -27,7 +27,7 @@ services:
       - portainer-data:/data
     networks:
       - agent-network
-      - traefik-public
+      - traefik-upfront
     deploy:
       placement:
         constraints:
@@ -35,8 +35,8 @@ services:
           - node.labels.portainer.portainer-data == true
       labels:
         - traefik.enable=true
-        - traefik.docker.network=traefik-public
-        - traefik.constraint-label=traefik-public
+        - traefik.docker.network=traefik-upfront
+        - traefik.constraint-label=${TRAEFIK_UPFRONT_LABEL:?Variable TRAEFIK_UPFRONT_LABEL not set}
         - traefik.http.routers.portainer-http.rule=Host(`${PORTAINER_DOMAIN?Variable not set}`)
         - traefik.http.routers.portainer-http.entrypoints=http
         - traefik.http.routers.portainer-http.middlewares=https-redirect
@@ -49,8 +49,9 @@ services:
 networks:
   agent-network:
     attachable: true
-  traefik-public:
+  traefik-upfront:
     external: true
+    name: ${TRAEFIK_UPFRONT_NETWORK:?Variable TRAEFIK_UPFRONT_NETWORK not set}
 
 volumes:
   portainer-data:
