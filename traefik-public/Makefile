@@ -4,9 +4,6 @@ export
 .env:
 	sh configure.sh
 
-docker-compose.dump.yml: .env
-	docker-compose -f docker-compose.yml config > docker-compose.dump.yml
-
 it: .env
 	echo "setting up like for teh first time..."
 	make mk-net
@@ -49,7 +46,7 @@ deploy: docker-compose.dump.yml
 	docker stack deploy -c docker-compose.dump.yml ${TRAEFIK_STACK}
 
 update:
-	make cleancfg
+	make clean-cfg
 	make deploy
 
 rm-stack:
@@ -86,7 +83,10 @@ clear-labels:
 # -------------
 
 dump-cfg:
-	make docker-compose.dump.yml
+	docker-compose -f docker-compose.yml config > docker-compose.dump.yml
+
+docker-compose.dump.yml: .env
+	make dump-cfg
 
 clean-cfg:
 	rm -f docker-compose.dump.yml
