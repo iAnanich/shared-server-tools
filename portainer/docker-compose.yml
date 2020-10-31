@@ -2,7 +2,7 @@
 # https://dockerswarm.rocks/portainer/
 # Initially downloaded as $ curl -L dockerswarm.rocks/portainer.yml -o portainer.yml
 
-version: '3.3'
+version: '3.8'
 
 services:
   agent:
